@@ -3,7 +3,7 @@ from pathlib import Path
 test = Database()
 def test_LoadNormalStringArg():
     try:
-        CompareFiles('users.json',test.load('users.json'))
+        test.load('users.json')
     except TypeError:
         return
     assert True == False
@@ -18,6 +18,7 @@ def  test_LoadNormalFakeFile():
     except FileNotFoundError:
         return
     assert False
+
 def CompareFiles(FileName,UserDict):
     with open(FileName, 'r') as f:
         if f == UserDict:   f.close();return True#If the saved file is identical
