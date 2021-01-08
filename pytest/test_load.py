@@ -1,6 +1,6 @@
-from Passy import Userbase
+from passy import Database
 from pathlib import Path
-test = Userbase()
+test = Database()
 def test_LoadNormalStringArg():
     try:
         CompareFiles('users.json',test.load('users.json'))
@@ -9,12 +9,12 @@ def test_LoadNormalStringArg():
     assert True == False
 def  test_LoadNormalPath():
     try:
-        test.load(Path(r'C:\Users\benbr\OneDrive\Scripts\Python\Passy\pytest\users.json'))
+        test.load(Path(Path.cwd(),r'pytest\TestFiles\test1.json'))
     except:
         assert False
 def  test_LoadNormalFakeFile():
     try:
-        test.load(Path(r'C:\Users\benbr\OneDrive\Scripts\Python\Passy\pytest\FakeFile.json'))
+        test.load(Path(Path.cwd(),r'pytest\TestFiles\fakefile.json'))
     except FileNotFoundError:
         return
     assert False

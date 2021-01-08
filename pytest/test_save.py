@@ -1,7 +1,8 @@
-from Passy import Userbase
+from passy import Database
 from pathlib import Path
 from json import load as jload
-test = Userbase()
+import os
+test = Database()
 def test_SaveNonPathObject():
     try:
         test.save('users.json')
@@ -9,8 +10,7 @@ def test_SaveNonPathObject():
         return
     assert False
 def test_SaveNormal():
-    try:
-        test.save(Path(r'C:\Users\benbr\OneDrive\Scripts\Python\Passy\pytest\users.json'))
-    except:
-        assert False
-    return
+    test.save   (Path(Path.cwd(),r'pytest\TestFiles\output.json'))
+    os.remove   (Path(Path.cwd(),r'pytest\TestFiles\output.json'))
+
+test_SaveNormal()

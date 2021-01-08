@@ -1,5 +1,5 @@
-from Passy import Userbase
-test = Userbase()
+from passy import Database
+test = Database()
 def test_CheckSuccessNormalUser():
     test.add   ('abcdefghijklmnopqrstuvwxyz','password')
     assert True == test.check ('abcdefghijklmnopqrstuvwxyz','password')

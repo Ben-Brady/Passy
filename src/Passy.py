@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from json import load as jload, dump as jdump, JSONDecodeError
 from Crypto.Cipher import AES
@@ -5,44 +6,37 @@ from hashlib import sha512,sha256
 from secrets import token_bytes, compare_digest
 from internal import AccountMigration as internal
 
-class Userbase:
+class Database:
     def __init__ (self):
-        self.Version = "0.0.1"
-        self.UserDict= {}
-    def ___lt__ (self,other):# <
-        pass
-    def ___le__ (self,other): #<=
-        pass
-    def ___eq__ (self,other): #==
+        self.Version  = "0.0.1"
+        self.UserDict = {}
+    
+    def __eq__ (self,other): #==
         return self.UserDict == other.UserDict
-    def ___ne__ (self,other): #=!
-        pass
-    def ___gt__ (self,other): #>
-        pass
-    def ___ge__ (self,other): #>=
-        pass
     
-    def __add__ (self,other): #Combining 2 dictionaries
-        temp = {}
-        for key in other.UserDict: 
-            if not(key in self.UserDict):
-                temp[key] = other.UserDict[key]
-            else:
-                temp[key] = self.UserDict[key]
-        return temp
+    def __ne__ (self,other): #=!
+        return self.UserDict != other.UserDict
+
+    def __lt__ (self,other):# <
+        return len(self.UserDict) < other
     
-    def __delitem__ (self,key):
-        del(self.UserDict[sha256(key.encode('utf-8')).hexdigest()])
+    def __le__ (self,other): #<=
+        return len(self.UserDict) <= other
+    
+    def __gt__ (self,other): #>
+        return len(self.UserDict) > other
+    
+    def __ge__ (self,other): #>=
+        return len(self.UserDict) >= other
     
     def __len__ (self):
         return (len(self.UserDict))
     
-    def __repr__ (self):
-        return str(self.UserDict)
 
-    def __hash__ (self):
-        hash(self.UserDict)
-        
+    def __delitem__ (self,key):
+        del(self.UserDict[sha256(key.encode('utf-8')).hexdigest()])
+    
+    
     def check(self,Username,Password):
         #The values are still comapred if there is a key error
         #to help reduce the liekliness of a timing based attack
