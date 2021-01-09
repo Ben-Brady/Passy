@@ -6,17 +6,11 @@ Passy Specification
 Scope
 .....
 
-| The projects scope only consists of organising secure login sessions
 |
-| The project is made for developers to not worry about the ins and outso f storing passwords and operating login sessions.
-| The program will operate as a black box in which the user provides instructions and receives output, this helps to prevent
-| to protect the developers from exposing themselves.
 |
-| The program isn't designed to handle features such as autosaving and backups of the user dictionary, this is down to the
-| developer's implementation of the package, it's their responsibility for that.
 |
-| If there are 
-
+|
+|
 
 ........
 Security

@@ -27,3 +27,11 @@ def test_NotEqual():
     assert test1 != test2
 def test_NotEqualFail():
     assert (not(test1 != test1d))
+def test_LessThan():
+    assert test1 < test2
+def test_LessEqual():
+    assert test1 <= test2
+def test_GreateThan():
+    assert test2 > test1
+def test_LessEqual():
+    assert test2 >= test1
