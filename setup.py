@@ -1,20 +1,18 @@
 from setuptools import setup
 
 setup(
-    name='Passy',
+    name='passy',
     version='0.0.1',
-    description='A in-developement package',
+    description='A credential handler for python',
     url="https://github.com/ThatGayKid/Passy",
     author="Ben Brady",
     author_email="benbradybusiness@gmail.com",
     py_modules=["passy"],
     package_dir={'': 'src'},
-    install_requires = [
-        "pycryptodome~=3.9.9",
-    ],
+    install_requires = [],
     extras_requires = {
         "dev": [
             "pytest>=6.2.1",
-            "check-manifest>=0.46",]
+            ]
     }
 )

@@ -1,22 +1,42 @@
-#######
-Classes
-#######
-
-........
+########
 Database
-........
+########
 
-=======
-Methods
-=======
+..............
+Dunder Methods
+..............
+
+
+========
+\== / != 
+========
+
+| Compare two database objects to see if they're identical
+
+================
+ < / <= / > / >=
+================
+
+| Compares the length of a database object and a int or another database object
 
 =====
-.Save
+ len 
 =====
+
+| Returns the total accounts in a database as an int
+
+
+.........
+Functions
+.........
+
+====
+Save
+====
 
 The "Save" function is used to save the database to a file::
 
-    .Save(File)
+    .save(File)
 
 Outputs the internal user dictionary to a json file stored at the File parameter
 
@@ -31,7 +51,7 @@ Arguments
 Errors
 ------
 
-- TypeError : if the File argument isn't a pathlib.Path object
+TypeError: If the File argument isn't a pathlib.Path object
 
 --------
 Examples
@@ -40,7 +60,7 @@ Examples
     Saves to the provided Path object::
 
         import pathlib
-        ExamplePath = pathlib.Path("D:","Users","Users.json")
+        ExamplePath = pathlib.Path("D:","Example","Users.json")
         Database.Save(ExamplePath)
 
 |
@@ -52,7 +72,7 @@ Load
 
 The "Load" function is used to load the database from a json file::
 
-    .Load(File)
+    .load(File)
 
 
 ---------
@@ -77,21 +97,25 @@ Examples
     Load from the provided Path object::
 
         import pathlib
-        ExamplePath = pathlib.Path("D:","Users","Users.json")
+        ExamplePath = pathlib.Path("D:","Example","Users.json")
         database.Load(ExamplePath)
 
 |
 
-==============
+===========
 Add Account
-==============
+===========
 
-Adds a new accounts to the internal user dictionary::
+Adds a new accounts to the database::
 
 
-    Add(Username,Password,[Attributes])
+    .add(Username,Password,[Attributes])
 
-Adds a new entry to the internal user dictionary
+| Adds an entry with the specified credentials and an optional attributes folder stored along with it
+Returns a bool to represent success:
+
+    - True,  if the entry was successfully added
+    - False, if there is already a user with that name
 
 ---------
 Arguments
@@ -103,26 +127,32 @@ Arguments
     Password (string)
         Specifies the created user's password
 
-Optional
-========
-
-    Atributes (dict)
-        Stores a secure dictionaray associated with the user
-
-| Returns a bool to represent a sucessfully added user
-| Please refer to the specification's section on account storage for security info
+    **kwargs
+        Any kwargs will be stored alongside the user's entry
 
 --------
 Examples
 --------
     
-    Adding account with the name "TestUser"::
+    Adding an account with the name "TestUser"::
 
-        impoty passy
-        passy.Add('TestUser','password')
+        Database.add('TestUser','password')
         
         Output: True
 
+    Adding an account with kwargs::
+
+        Database.add('user','pass',Example=True)
+        
+        Output: True
+
+    Adding a duplicate user::
+
+        Database.add('Sameuser','dsfhfns')
+        Output: True
+
+        Database.add('Sameuser','sdfasdg')
+        Output: False
 |
 |
 
@@ -131,9 +161,9 @@ Check Credentials
 =================
 
 
-Adds a new accounts to the internal user dictionary::
+Checks if a set of credentials have a valid owner::
 
-    Check(Username,Password)
+    .check(Username,Password)
 
 Returns a bool to check if login was valid
 
@@ -151,9 +181,14 @@ Arguments
 Examples
 --------
     
-    Checking credentials for "TestUser"::
-
-        import passy
-        passy.Check('TestUser','password')
+    Checking credentials for a valid user::
+        
+        Database.check('RealUser','password')
 
         Output: True
+
+    Checking credentials for an invalid user::
+
+        Database.check('BadUser','password')
+
+        Output: False

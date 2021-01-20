@@ -1,6 +1,8 @@
-##################
-Passy (Unreleased)
-##################
+#####
+Passy
+#####
+
+| A credential handler package for avoiding side channel attacks.
 
 .......
 Install
@@ -12,12 +14,19 @@ To install using pip::
     or
     python -m pip install Passy
 
+..........
+quickstart
+..........
+
+
+
 .............
 Contributions
 .............
 
-If you would like to help to develop run::
+If you would like to help to develop::
 
     pip install -e .[dev]
 
-Any contributions would be greatly appricated
+| This installs all development modules alongside the main package
+| Any contributions would be greatly appricated
