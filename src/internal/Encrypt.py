@@ -1,22 +1,18 @@
 from hashlib import sha256
 from secrets import token_bytes,compare_digest
 
-
 def SHA256(Input):
     """Shortcut ot the SHA256 Hash"""
     return sha256((Input).encode('utf-8')).hexdigest()
 
 def Encrypt1(Username,Password):
     Salt = token_bytes(64).hex()#Generate and store the salt
-    User = SHA256(Username)
-    Pass = SHA256(Password+Salt)
+    User = SHA256(Username)     #Hash the Username
+    Pass = SHA256(Password+Salt)#
     
     return (User,[Pass,Salt])
 
 def Check1(Username,Password,UserDict):
-    #The values are still comapred if there is a key error
-    #to help reduce the liekliness of a timing based attack
-    #!Timing attack
     Name = SHA256(Username)
     
     try:

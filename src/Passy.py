@@ -3,7 +3,7 @@ from pathlib import Path
 from json import load as jload, dump as jdump, JSONDecodeError
 from secrets import compare_digest
 
-import internal.Encryption as internal
+import internal.Encrypt as internal
 
 class Database:
     def __init__ (self):
