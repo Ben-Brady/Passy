@@ -1,18 +1,17 @@
 from hashlib import sha256
 from secrets import token_bytes,compare_digest
 
-def SHA256(Input):
-    """Shortcut ot the SHA256 Hash"""
+def SHA256(Input: str) -> str:
     return sha256((Input).encode('utf-8')).hexdigest()
 
-def Encrypt1(Username,Password):
+def Encrypt1(Username:str,Password:str) -> tuple:
     Salt = token_bytes(64).hex()#Generate and store the salt
     User = SHA256(Username)     #Hash the Username
     Pass = SHA256(Password+Salt)#
     
     return (User,[Pass,Salt])
 
-def Check1(Username,Password,UserDict):
+def Check1(Username:str,Password:str,UserDict:dict) -> bool:
     Name = SHA256(Username)
     
     try:

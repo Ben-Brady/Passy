@@ -39,14 +39,14 @@ class Database:
     def __len__ (self):
         return (len(self.UserDict))
     
-    def check(self,Username,Password):
+    def check(self,Username: str,Password: str) -> bool:
         """
         Checks a set of credentials to if they're valid.
         Returns a bool representing success.
         """
         return internal.Check[self.Version](Username,Password,self.UserDict)
 
-    def add(self,Username,Password,**kwargs):
+    def add(self,Username:str,Password:str,**kwargs)  -> bool:
         """
         Adds a user to the database with the username and password properties.
         Note: The Attibutes propery is the kwargs arguments
@@ -64,7 +64,10 @@ class Database:
         return True
     
     
-    def load(self,File):
+    def load(self,File:pathlib.Path):
+        """
+        Loads an internal dictionary from a pathlib.Path
+        """
         #if File isn't a path object
         if type(File) != type(Path()): raise TypeError ("Non-pathlib.path object used")
         #If file doesn't exist, riase a FileNotFoundError
@@ -73,7 +76,10 @@ class Database:
         with open(File, 'r') as f:
             self.UserDict = jload(f)
 
-    def save(self,File):
+    def save(self,File:pathlib.Path):
+        """
+        Saves the internal dictionary to a pathlib.Path
+        """
         #if File isn't a path object
         if type(File) != type(Path()): raise TypeError ("Non-pathlib.path object used")
         
