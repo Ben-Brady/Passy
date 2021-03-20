@@ -1,6 +1,4 @@
-#######
-Install
-#######
+# Install
 
 | The easiest way to install passy is to use python's pip module
 |
