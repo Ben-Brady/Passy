@@ -46,7 +46,8 @@ class Auth:
         return success
 
 
-    def loads(self, data: str) -> Self:
+    @classmethod
+    def loads(cls, data: str) -> Self:
         decoded = json.loads(b64decode(data))
         password_hash = decoded['password_hash']
         if "otp" in decoded:
